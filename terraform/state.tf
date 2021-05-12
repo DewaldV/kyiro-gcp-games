@@ -9,7 +9,6 @@ resource "google_storage_bucket" "tf-state" {
 
 terraform {
   backend "gcs" {
-    credentials = "account.json"
     bucket      = "kyiro-gcp-tf"
     prefix      = "terraform/state"
   }
