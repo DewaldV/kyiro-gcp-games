@@ -1,8 +1,8 @@
-FROM azul/zulu-openjdk:14
+FROM azul/zulu-openjdk:16-jre
 
 RUN install -d -o root -g root /opt/minecraft
 
-ADD https://launcher.mojang.com/v1/objects/1b557e7b033b583cd9f66746b7a9ab1ec1673ced/server.jar /opt/minecraft/server.jar
+ADD https://launcher.mojang.com/v1/objects/a16d67e5807f57fc4e550299cf20226194497dc2/server.jar /opt/minecraft/server.jar
 COPY eula.txt /opt/minecraft/eula.txt
 COPY entrypoint.sh /usr/bin/entrypoint.sh
 
