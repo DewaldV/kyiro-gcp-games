@@ -1,4 +1,4 @@
-FROM azul/zulu-openjdk:16-jre
+FROM azul/zulu-openjdk:17-jre
 
 RUN install -d -o root -g root /opt/minecraft
 
