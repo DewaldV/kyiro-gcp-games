@@ -1,11 +1,21 @@
 steps:
 - id: minecraft-build
   name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'eu.gcr.io/${PROJECT_ID}/minecraft', 'minecraft/']
+  args: ['build', '-t', 'eu.gcr.io/${PROJECT_ID}/minecraft:${SHORT_SHA}', 'minecraft/']
 
 - id: minecraft-push
   name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'eu.gcr.io/${PROJECT_ID}/minecraft']
+  args: ['push', 'eu.gcr.io/${PROJECT_ID}/minecraft:${SHORT_SHA}']
+
+
+- id: minecraft-set-image
+  name: "gcr.io/$PROJECT_ID/kustomize"
+  entrypoint: bash
+  args:
+  - '-c'
+  - |
+    cd minecraft/k8s
+    kustomize edit set image eu.gcr.io/kyiro-gcp-games/minecraft:${SHORT_SHA}
 
 - id: minecraft-deploy
   name: "gcr.io/$PROJECT_ID/kustomize"
